@@ -45,16 +45,21 @@ namespace CodeChallenge.Config
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IEmployeeRepository, EmployeeRespository>();
             services.AddScoped<IReportingStructureService, ReportingStructureService>();
+            services.AddScoped<ICompensationService, CompensationService>();
+            services.AddScoped<ICompensationRepository, CompensationRepository>();
 
             services.AddControllers();
         }
 
         private void SeedEmployeeDB()
         {
-            new EmployeeDataSeeder(
-                new EmployeeContext(
-                    new DbContextOptionsBuilder<EmployeeContext>().UseInMemoryDatabase("EmployeeDB").Options
-            )).Seed().Wait();
+            new EmployeeDataSeeder(new EmployeeContext(
+                new DbContextOptionsBuilder<EmployeeContext>().UseInMemoryDatabase("EmployeeDB").Options)
+            ).Seed().Wait();
+
+            new CompensationDataSeeder(new CompensationContext(
+                new DbContextOptionsBuilder<CompensationContext>().UseInMemoryDatabase("EmployeeDB").Options)
+            ).Seed().Wait();
         }
     }
 }

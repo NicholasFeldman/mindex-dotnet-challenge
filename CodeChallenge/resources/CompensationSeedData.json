@@ -1,0 +1,20 @@
+﻿[
+  {
+    "compensationId": "b7839309-3348-463b-a7e3-5de1c168beb3",
+    "employeeId": "16a596ae-edd3-4847-99fe-c4518e82c86f",
+    "salary": "100,000",
+    "effectiveDate": "2020-01-01T00:00:00"
+  },
+  {
+    "compensationId": "9dc9762c-adc1-4031-807b-f5178516b637",
+    "employeeId": "16a596ae-edd3-4847-99fe-c4518e82c86f",
+    "salary": "500,000",
+    "effectiveDate": "2050-01-01T00:00:00"
+  },
+  {
+    "compensationId": "c06df090-78f0-404c-9cfd-8870a73872c8",
+    "employeeId": "03aa1462-ffa9-4978-901b-7c001562cf6f",
+    "salary": "200,000",
+    "effectiveDate": "2022-01-01T00:00:00"
+  }
+]
