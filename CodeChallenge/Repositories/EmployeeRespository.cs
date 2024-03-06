@@ -29,7 +29,14 @@ namespace CodeChallenge.Repositories
 
         public Employee GetById(string id)
         {
-            return _employeeContext.Employees.SingleOrDefault(e => e.EmployeeId == id);
+            // By Including DirectReports here, We'll always hydrate the first level deep.
+            // This may or may not be desired for `/api/employee/{id}`, but it's hard to decide without context.
+            // When the reporting structure is created, it will hydrate "deeply" as it recurses.
+            // This means that the distinction between a value of `directReports`
+            // that is not yet fetched or is empty is `null` vs `[]` respectively.
+            return _employeeContext.Employees
+                .Include(e => e.DirectReports)
+                .SingleOrDefault(e => e.EmployeeId == id);
         }
 
         public Task SaveAsync()

@@ -33,6 +33,22 @@ namespace CodeCodeChallenge.Tests.Integration
             _httpClient.Dispose();
             _testServer.Dispose();
         }
+        
+        [TestMethod]
+        [DataRow("16a596ae-edd3-4847-99fe-c4518e82c86f", 4)]
+        [DataRow("03aa1462-ffa9-4978-901b-7c001562cf6f", 2)]
+        [DataRow("62c1084e-6e34-4630-93fd-9153afb65309", 0)]
+        public void GetReportingStructureByEmployeeId_Returns_Ok(string employeeId, int expectedNumberOfReports)
+        {
+            // Execute
+            var getRequestTask = _httpClient.GetAsync($"api/employee/{employeeId}/reports");
+            var response = getRequestTask.Result;
+
+            // Assert
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            var reportingStructure = response.DeserializeContent<ReportingStructure>();
+            Assert.AreEqual(expectedNumberOfReports, reportingStructure.NumberOfReports);
+        }
 
         [TestMethod]
         public void CreateEmployee_Returns_Created()
